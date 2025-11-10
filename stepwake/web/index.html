@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StepWake — Web Prototype</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- TF.js and pose-detection for webcam-based step detection -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@0.0.7/dist/pose-detection.min.js"></script>
+</head>
+<body>
+  <main>
+    <h1>StepWake (Web Prototype)</h1>
+
+    <section class="control">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
+        <button id="enableBtn">Enable audio & motion</button>
+        <div id="enableStatus" style="color:#6b7280">Not enabled</div>
+      </div>
+
+      <label>Alarm time:
+        <input type="time" id="timeInput">
+      </label>
+
+      <label>Step goal:
+        <input type="number" id="stepGoal" min="1" value="8">
+      </label>
+
+        <label>Step sensitivity:
+          <input type="range" id="sensitivity" min="0.5" max="2" step="0.1" value="1">
+        </label>
+        <div style="font-size:12px;color:#6b7280;margin-bottom:8px">Sensitivity: <span id="sensitivityVal">1.0</span> (lower = easier)</div>
+
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+          <button id="calibrateBtn">Calibrate (3s)</button>
+          <div id="calibStatus" style="color:#6b7280">Not calibrated</div>
+        </div>
+
+      <div style="margin-top:8px">
+        <label>Alarm music (optional):</label>
+        <input type="file" id="alarmFile" accept="audio/*">
+        <input type="text" id="alarmUrl" placeholder="Or paste audio URL" style="width:100%;margin-top:6px" />
+        <div style="font-size:12px;color:#6b7280;margin-top:6px">If none selected, a built-in tone will play.</div>
+      </div>
+
+      <div class="buttons">
+        <button id="setBtn">Set Alarm</button>
+        <button id="cancelBtn">Cancel Alarm</button>
+        <button id="simulateBtn">Start debug alarm (simulate)</button>
+      </div>
+
+      <div id="scheduled">No alarm scheduled</div>
+    </section>
+
+    <section class="status">
+      <h2 id="alarmState">Idle</h2>
+      <div id="remaining" class="big">—</div>
+      <div id="sensorStatus">Sensor: unknown</div>
+      <div class="simulate-controls">
+        <button id="stepMock">+1 simulated step</button>
+      </div>
+      <div class="webcam-controls" style="margin-top:12px">
+        <button id="webcamBtn">Use webcam for steps</button>
+        <div id="webcamStatus" style="color:#6b7280;margin-top:6px">Webcam: off</div>
+        <video id="webcamVideo" width="320" height="240" autoplay muted playsinline style="display:none;border-radius:8px;margin-top:8px"></video>
+      </div>
+    </section>
+
+    <p class="note">Note: In browsers the step counter uses DeviceMotion where available. Use the simulate buttons for testing on desktop or unsupported devices.</p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
