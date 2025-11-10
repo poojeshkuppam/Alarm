@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="StepWake — Alarm Editor"
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp" />
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etStepGoal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Step goal (default 8)"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnSetAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Alarm"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btnCancelAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel Alarm"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnSetDebugAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start debug alarm (simulate steps)"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status: idle"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/tvScheduled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No alarm scheduled"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+
+</ScrollView>
